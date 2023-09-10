@@ -1,5 +1,7 @@
-import 'package:flutter/material.dart';
+import 'package:dartstudy/day1/oop_learn.dart';
 import 'package:dartstudy/day1/date_type.dart';
+import 'package:dartstudy/day2/function_learn.dart';
+import 'package:flutter/material.dart';
 
 void main() {
   runApp(const MyApp());
@@ -40,6 +42,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    // _oopLearn();
+    _functionLearn();
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
@@ -47,10 +51,33 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
         child: ListView(
           children: const <Widget>[
-            DataType(),
+            // DataType(),
           ],
         ),
       ),
     );
+  }
+
+  void _oopLearn() {
+    print('--------oopLearn--------');
+
+    /// 静态方法调用
+    Student.doPrint('这是doPrint');
+
+    /// 创建Student对象/实例
+    Student stu1 = Student('清华', '小张', 23);
+    stu1.setSchool = '985';
+    print('====>  ${stu1.toString()}');
+
+    Student stu2 = Student('北大', 'Tome', 37, city: '上海', country: '中国');
+    print('stu2====>  ${stu2.toString()}');
+
+    StudyFlutter sf = StudyFlutter();
+    sf.study();
+  }
+
+  void _functionLearn() {
+    TestFunction tf = TestFunction();
+    tf.start();
   }
 }

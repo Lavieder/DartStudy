@@ -1,7 +1,7 @@
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 
-// dart 常用数据类型
+// 一. dart 常用数据类型
 class DataType extends StatefulWidget {
   const DataType({super.key});
 
@@ -17,6 +17,8 @@ class _MyWidgetState extends State<DataType> {
     _stringType();
     _boolType();
     _listType();
+    _mapType();
+    _tips();
     return const Placeholder();
   }
 
@@ -88,5 +90,62 @@ class _MyWidgetState extends State<DataType> {
     });
 
     // 作业： remove, insert, sublist, indexOf
+  }
+
+  // Map类型,类似于Object, 结构：{key: value}
+  _mapType() {
+    // Map定义
+    Map names = {'xm': '小明', 'xh': '小红'};
+    // 添加元素
+    names['zs'] = '张三';
+    names['li'] = '里斯';
+    print(names);
+    // 取值
+    print('取值：${names['li']}');
+    // 删除值
+    print('remove: ${names.remove('xh')}， names: $names');
+
+    // map遍历
+    names.forEach((key, value) {
+      print('key: $key, value: $value');
+    });
+    // 使用迭代生成一个新map
+    Map names2 = names.map((key, value) => MapEntry(key, value));
+    print('names2: $names2');
+
+    var keys = names.keys; // 取key的所有值，返回一个key的集合
+    print('keys: $keys');
+
+    var values = names.values; // 取value的值，返回一个value的集合
+    print('values: $values');
+
+    print('containkey: ${names2.containsValue('小明')}');
+  }
+
+  // dynamic, var, Object三者区别
+  _tips() {
+    print('---------------tip--------------');
+    /*
+     * dynamic,是所有Dart对象的基础类型，它可以定义所有类型，属于动态数据类型，他的类型取决于值的类型，只有在运行的时候才知道是什么数据类型，所以相当于会关闭类型检查，之后能把其他的数据类型赋值给他，并不安全。不推荐使用
+     *  */
+    dynamic x = 'dyna';
+    print('x: ${x.runtimeType}'); // String
+    print(x);
+    x = 123;
+    print(x.runtimeType); // int
+
+    /**
+     * var, 是一个关键字，可以定义所有类型，但它的类型取决于第一次赋值的类型，之后不能改变，否则报错
+     */
+    var a = 'var';
+    print('a: ${a.runtimeType}'); // String
+    print(a);
+
+    /**
+     * Object 是Dart对象的基类，如果定义的类型是String，int等类型，则不能调用其内部的方法。
+     */
+    Object b = 'qqqq';
+    print('b: ${b.runtimeType}'); // String
+    print(b);
   }
 }
